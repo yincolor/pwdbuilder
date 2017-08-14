@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>编解码工具</title>
+<script type="text/javascript">
+j={"A":"-----.-","B":"------...","C":"------.-.","D":"------..","E":"-----.",
+"F":"-----..-.","G":"-------.","H":"-----....","I":"-----..","J":"-----.---",
+"K":"------.-","L":"-----.-..","M":"-------","N":"------.","O":"--------",
+"P":"-----.--.","Q":"-----..-","R":"-----.-.","S":"-----...","T":"------",
+"U":"------..-","V":"-----...-","W":"-----.--","X":"------..-","Y":"------.--",
+"Z":"-------..","0":"-----","1":".----","2":"..---","3":"...--",
+"4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",
+"a":".-","b":"-...","c":"-.-.","d":"-..","e":".","f":"..-.","g":"--.",
+"h":"....","i":"..","j":".---","k":"-.-","l":".-..","m":"--","n":"-.","o":"---",
+"p":".--.","q":"--.-","r":".-.","s":"...","t":"-","u":"..-","v":"...-","w":".--",
+"x":"-..-","y":"-.--","z":"--..",".":".-.-.-",":":"---...",",":"--..--",
+";":"-.-.-.","?":"..--..","=":"-...-","'":".----.","/":"-..-.","!":"-.-.--",
+"-":"-....-","_":"..--.-","\"":".-..-.","(":"-.--.",")":"-.--.-","$":"...-..-","&":"....--","@":".--.-.","+":".-.-.","*":"*","%":"%","#":"#","^":"^",
+" ":" ","[":"]","]":"[","\\":".-.-.."}
+n_j={"-----":"0",".----":"1","..---":"2","...--":"3","....-":"4",".....":"5","-....":"6","--...":"7","---..":"8","----.":"9",".-":"a","-...":"b","-.-.":"c","-..":"d",".":"e","..-.":"f","--.":"g","....":"h","..":"i",".---":"j","-.-":"k",".-..":"l","--":"m","-.":"n","---":"o",".--.":"p","--.-":"q",".-.":"r","...":"s","-":"t","..-":"u","...-":"v",".--":"w","-..-":"x","-.--":"y","--..":"z","-----.-":"A","------...":"B","------.-.":"C","------..":"D","-----.":"E","-----..-.":"F","-------.":"G","-----....":"H","-----..":"I","-----.---":"J","------.-":"K","-----.-..":"L","-------":"M","------.":"N","--------":"O","-----.--.":"P","-----..-":"Q","-----.-.":"R","-----...":"S","------":"T","------..-":"U","-----...-":"V","-----.--":"W","------..-":"X","------.--":"Y","-------..":"Z",".-.-.-":".","---...":":","--..--":",","-.-.-.":";","..--..":"?","-...-":"=",".----.":"'","-..-.":"/","-.-.--":"!","-....-":"-","..--.-":"_",".-..-.":"\"","-.--.":"(","-.--.-":")","...-..-":"$","....--":"&",".--.-.":"@",".-.-.":"+","*":"*","%":"%","#":"#","^":"^",
+" ":" ","[":"]","]":"[",".-.-..":"\\"}
+
+
+
+function JsonExchange(source_json){
+	return_json = {}
+	for(var k in source_json){
+		return_json[source_json[k]] = k;
+	}
+	return return_json
+}
+function SetStrToMoth()
+{
+	str = document.getElementById("bminput").value
+	s_list = str.split("");
+	//console.log(s_list);
+	moth_str = '/';
+	for(var i = 0;i<s_list.length;i++)
+	{
+		moth_str = moth_str + j[s_list[i]];
+		moth_str = moth_str + '/';
+		//console.log(j[s_list[i]]);
+	}
+	a = document.getElementById('bmreturn');
+	a.innerHTML = moth_str;
+	
+	JsonExchange(j)
+}
+function SetMothToStr()
+{
+	moth = document.getElementById("jminput").value
+	m_list = moth.split("/");
+	console.log(m_list);
+	str = '';
+	//n_j = JsonExchange(j);
+	for(var i = 0;i<m_list.length;i++)
+	{
+		if(m_list[i] != "")
+		{
+			console.log(m_list[i]);
+			str = str + n_j[m_list[i]];
+		}
+	}
+	console.log(str)
+	a = document.getElementById('jmreturn');
+	a.innerHTML = str;
+}
+</script>
+<style type="text/css">
+	html,body{
+		margin:0px;
+		padding:10px;
+	}
+	div
+	{
+		margin:10px 10px;
+		text-align:center;
+	}
+	input{
+		width:70%;
+		height:34px;
+		font-size:25px;
+		left:5px;
+		float:left;
+	}
+	button{
+		width:20%;
+		height:36px;
+		left:5px;
+		float:left;
+	}
+	#pageTitle{
+		font-size: 40px;
+		font-weight: 700;
+	}
+</style>
+</head>
+<body>
+	<div><span id = "pageTitle">编解码工具</span><br/><span>注意：通过修改页面代码可以更改字符编码</span><br/><br/></div>
+	<div>
+    	<h2>编码</h2>
+    	
+		<input id="bminput" type="text"/>
+		<button onclick = "SetStrToMoth()">开始编码</button>
+		<br/>
+		<br/>
+		<p id="bmreturn"></p>
+	</div>
+	<br/>
+	<hr/>
+	<br/>
+	<div>
+		<h2>解码</h2>
+		
+		<input id="jminput" type="text"/>
+		<button onclick="SetMothToStr()">开始解码</button>
+		<br/>
+		<br/>
+		<p id = "jmreturn"></p>
+	</div>
+	<div>
+		<br/>
+		<br/>
+		<br/>
+		<hr/>
+		<br/>
+		<span>Thanks:
+		<a href="http://www.runoob.com/">http://www.runoob.com/</a>
+		</span>
+		<br/>
+		<p>You can copy this html page.</p>
+	</div>
+</body>
+</html>
+
